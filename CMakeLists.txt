@@ -13,7 +13,9 @@ find_package(Qt6 COMPONENTS
   Widgets
   REQUIRED)
 
-add_executable(Image_Picker main.cpp)
+add_executable(Image_Picker main.cpp
+        backend.cpp
+        MyWindow.h)
 target_link_libraries(Image_Picker
   Qt::Core
   Qt::Gui
@@ -25,7 +27,7 @@ if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     if (MSVC AND CMAKE_BUILD_TYPE MATCHES "Debug")
         set(DEBUG_SUFFIX "d")
     endif()
-    set(QT_INSTALL_PATH "C:\\Qt\\6.8.2\\mingw_64\\bin")
+    set(QT_INSTALL_PATH "C:\\Qt\\6.8.2\\mingw_64")
     if(NOT EXISTS "${QT_INSTALL_PATH}/bin")
         set(QT_INSTALL_PATH "${QT_INSTALL_PATH}/..")
         if(NOT EXISTS "${QT_INSTALL_PATH}/bin")

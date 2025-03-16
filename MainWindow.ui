@@ -10,6 +10,11 @@
     <height>672</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>图片抽取器</string>
   </property>
@@ -21,7 +26,47 @@
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout">
       <item row="3" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,1,1">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1,2,6,1,1">
+        <item>
+         <widget class="QPushButton" name="ControlButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="toolTip">
+           <string>开始抽取(↵)</string>
+          </property>
+          <property name="text">
+           <string>开始</string>
+          </property>
+          <property name="shortcut">
+           <string>Return</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="ModeBox">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>随机选择</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>顺序选择</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="CountLabel">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
         <item>
          <spacer name="horizontalSpacer">
           <property name="orientation">
@@ -36,16 +81,40 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="BakcButton">
+         <widget class="QPushButton" name="BackButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="toolTip">
+           <string>上一张图片(←)</string>
+          </property>
           <property name="text">
            <string>上一张</string>
+          </property>
+          <property name="shortcut">
+           <string>Left</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <property name="checked">
+           <bool>false</bool>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="NextButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="toolTip">
+           <string>下一张图片(→)</string>
+          </property>
           <property name="text">
            <string>下一张</string>
+          </property>
+          <property name="shortcut">
+           <string>Right</string>
           </property>
          </widget>
         </item>
@@ -59,6 +128,55 @@
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>823</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menufile">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <property name="toolTipsVisible">
+     <bool>false</bool>
+    </property>
+    <addaction name="actionopen"/>
+    <addaction name="actionclear"/>
+   </widget>
+   <widget class="QMenu" name="menuhelp">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="actionabout"/>
+   </widget>
+   <addaction name="menufile"/>
+   <addaction name="menuhelp"/>
+  </widget>
+  <action name="actionopen">
+   <property name="text">
+    <string>打开文件夹</string>
+   </property>
+  </action>
+  <action name="actionclear">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>关闭文件夹</string>
+   </property>
+   <property name="iconText">
+    <string>关闭文件夹</string>
+   </property>
+  </action>
+  <action name="actionabout">
+   <property name="text">
+    <string>关于</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

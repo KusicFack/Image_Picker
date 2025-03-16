@@ -1,20 +1,10 @@
 #include "MainWindow.h"
-
-using Ui::MainWindow;
-
-class Window : public QMainWindow, public Ui_MainWindow
-{
-    public:
-    Window() : Ui_MainWindow()
-    {
-        setupUi(this);
-    }
-};
+#include "MyWindow.h"
 
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
-    Window window;
+    Window window(0);
     window.show();
     return app.exec();
 }

@@ -1,0 +1,9 @@
+# ninja log v6
+14	2188	7638239795992089	CMakeFiles/Image_Picker.dir/main.cpp.obj	f72ad3c2718e5491
+9	120	7638238149255454	E:/C++/Image_Picker/cmake-build-debug/Image_Picker_autogen/timestamp	ee4afad4dba71e84
+9	120	7638238149255454	Image_Picker_autogen/timestamp	ee4afad4dba71e84
+21	2301	7638239796063601	CMakeFiles/Image_Picker.dir/backend.cpp.obj	de234df71b4a04b3
+9	120	7638238149255454	E:/C++/Image_Picker/cmake-build-debug/Image_Picker_autogen/mocs_compilation.cpp	ee4afad4dba71e84
+9	120	7638238149255454	Image_Picker_autogen/mocs_compilation.cpp	ee4afad4dba71e84
+2301	2636	7638239818853427	Image_Picker.exe	a5223a611ecd5ad3
+243	363	7637499705568794	CMakeFiles/Image_Picker.dir/Image_Picker_autogen/mocs_compilation.cpp.obj	1ba57bbce8307203

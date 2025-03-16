@@ -1,4 +1,4 @@
-# Install script for directory: F:/C++/Image_Picker
+# Install script for directory: E:/C++/Image_Picker
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -52,6 +52,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "F:/C++/Image_Picker/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "E:/C++/Image_Picker/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

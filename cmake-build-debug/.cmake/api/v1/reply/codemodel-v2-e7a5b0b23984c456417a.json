@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Image_Picker",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Image_Picker::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Image_Picker-Debug-8c0c42de44520c17cd2c.json",
+					"name" : "Image_Picker",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Image_Picker_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Image_Picker_autogen-Debug-1476d4a0d24a24ee8415.json",
+					"name" : "Image_Picker_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Image_Picker_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Image_Picker_autogen_timestamp_deps-Debug-41eb864e2b0bc7f43fea.json",
+					"name" : "Image_Picker_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "E:/C++/Image_Picker/cmake-build-debug",
+		"source" : "E:/C++/Image_Picker"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
