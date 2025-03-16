@@ -60,8 +60,8 @@ void Window::initialize(int mode)
     if (pictures.size() > static_cast<qsizetype>(1)) NextButton->setEnabled(true);
     ControlButton->setText(QString("结束"));
     ModeBox->setEnabled(false);
-    disconnect(ControlButton, &QPushButton::clicked, this, initialize_mode);
-    connect(ControlButton, &QPushButton::clicked, this, stop);
+    disconnect(ControlButton, &QPushButton::clicked, this, &Window::initialize_mode);
+    connect(ControlButton, &QPushButton::clicked, this, &Window::stop);
     switch (mode)
     {
         case 0:
@@ -100,14 +100,14 @@ void Window::back()
 
 void Window::stop()
 {
-    disconnect(ControlButton, &QPushButton::clicked, this, stop);
-    connect(ControlButton, &QPushButton::clicked, this, initialize_mode);
+    disconnect(ControlButton, &QPushButton::clicked, this, &Window::stop);
+    connect(ControlButton, &QPushButton::clicked, this, &Window::initialize_mode);
     ControlButton->setText(QString("开始"));
     NextButton->setEnabled(false);
     BackButton->setEnabled(false);
     ModeBox->setEnabled(true);
     CountLabel->setText("");
-    graphicsView->scene()->clear();
+    graphicsView->resetImage();
 }
 
 void Window::mode_change()
@@ -129,14 +129,6 @@ void Window::mode_change()
 
 void Window::showpicture(QStringList::iterator it)
 {
-    QPixmap pix(*it);
-    if (!graphicsView->scene()) {
-        graphicsView->setScene(new QGraphicsScene(this));
-    } else {
-        graphicsView->scene()->clear();
-    }
-    graphicsView->scene()->addPixmap(pix);
-    graphicsView->setRenderHint(QPainter::SmoothPixmapTransform);
-    graphicsView->setRenderHint(QPainter::Antialiasing);
-    graphicsView->fitInView(graphicsView->scene()->itemsBoundingRect(), Qt::KeepAspectRatio);
+    QPixmap mapImg(*it);
+    graphicsView->setPixmap(mapImg);
 }

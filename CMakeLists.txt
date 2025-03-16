@@ -8,19 +8,29 @@ set(CMAKE_AUTOUIC ON)
 
 
 find_package(Qt6 COMPONENTS
-  Core
-  Gui
-  Widgets
-  REQUIRED)
+    Core
+    Gui
+    Widgets
+    REQUIRED)
+
+set(app_icon_resource_windows
+    "${CMAKE_CURRENT_SOURCE_DIR}/resource.rc"
+)
 
 add_executable(Image_Picker main.cpp
-        backend.cpp
-        MyWindow.h)
-target_link_libraries(Image_Picker
-  Qt::Core
-  Qt::Gui
-  Qt::Widgets
+    backend.cpp
+    MyWindow.h
+    ImageViewer.h
+    ImageViewer.cpp
+    ${app_icon_resource_windows}
 )
+
+set_target_properties(Image_Picker PROPERTIES WIN32_EXECUTABLE TRUE)
+
+target_link_libraries(Image_Picker
+    Qt::Core
+    Qt::Gui
+    Qt::Widgets)
 
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(DEBUG_SUFFIX)

@@ -17,20 +17,20 @@ public:
     Window(int mode) : MainWindow(), MODE(mode)
     {
         setupUi(this);
-        connect(actionopen, &QAction::triggered, this, openfolder);
-        connect(actionclear, &QAction::triggered, this, closefolder);
-        connect(actionabout, &QAction::triggered, this, about);
-        connect(ControlButton, &QPushButton::clicked, this, initialize_mode);
-        connect(NextButton, &QPushButton::clicked, this, next);
-        connect(BackButton, &QPushButton::clicked, this, back);
-        connect(ModeBox, &QComboBox::currentIndexChanged, this, mode_change);
+        connect(actionopen, &QAction::triggered, this, &Window::openfolder);
+        connect(actionclear, &QAction::triggered, this, &Window::closefolder);
+        connect(actionabout, &QAction::triggered, this, &Window::about);
+        connect(ControlButton, &QPushButton::clicked, this, &Window::initialize_mode);
+        connect(NextButton, &QPushButton::clicked, this, &Window::next);
+        connect(BackButton, &QPushButton::clicked, this, &Window::back);
+        connect(ModeBox, &QComboBox::currentIndexChanged, this, &Window::mode_change);
     }
 private slots:
     void openfolder();
     void closefolder();
     void about();
     void initialize(int);
-    inline void initialize_mode() {initialize(MODE);}
+    void initialize_mode() {initialize(MODE);}
     void stop();
     void next();
     void back();

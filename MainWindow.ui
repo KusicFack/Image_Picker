@@ -18,6 +18,10 @@
   <property name="windowTitle">
    <string>图片抽取器</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resource.qrc">
+    <normaloff>:/icons/icons/window.ico</normaloff>:/icons/icons/window.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="layoutDirection">
     <enum>Qt::LayoutDirection::LeftToRight</enum>
@@ -121,7 +125,11 @@
        </layout>
       </item>
       <item row="0" column="0">
-       <widget class="QGraphicsView" name="graphicsView"/>
+       <widget class="ImageViewer" name="graphicsView">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -178,6 +186,15 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <customwidgets>
+  <customwidget>
+   <class>ImageViewer</class>
+   <extends>QGraphicsView</extends>
+   <header>ImageViewer.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>
