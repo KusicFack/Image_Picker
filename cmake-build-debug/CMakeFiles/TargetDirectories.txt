@@ -1,5 +1,0 @@
-E:/C++/Image_Picker/cmake-build-debug/CMakeFiles/Image_Picker.dir
-E:/C++/Image_Picker/cmake-build-debug/CMakeFiles/edit_cache.dir
-E:/C++/Image_Picker/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-E:/C++/Image_Picker/cmake-build-debug/CMakeFiles/Image_Picker_autogen_timestamp_deps.dir
-E:/C++/Image_Picker/cmake-build-debug/CMakeFiles/Image_Picker_autogen.dir
