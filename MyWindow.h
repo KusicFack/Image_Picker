@@ -1,7 +1,7 @@
 #ifndef MYWINDOW_H
 #define MYWINDOW_H
+
 #include "MainWindow.h"
-#include <QDir>
 
 using Ui::MainWindow;
 

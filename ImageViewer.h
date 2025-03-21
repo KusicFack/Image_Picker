@@ -1,9 +1,9 @@
 #ifndef IMAGEVIEWER_H
 #define IMAGEVIEWER_H
 
-#include <QGraphicsItem>
-#include <QGraphicsView>
-#include <QWheelEvent>
+#include <QtWidgets/QGraphicsItem>
+#include <QtWidgets/QGraphicsView>
+#include <QtGui/QWheelEvent>
 
 class ImageViewer : public QGraphicsView
 {

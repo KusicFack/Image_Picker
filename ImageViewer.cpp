@@ -22,8 +22,6 @@ void ImageViewer::setPixmap(QPixmap pixmap)
 }
 void ImageViewer::resetImage()
 {
-    if(m_image.isNull())
-        return;
     scene->clear();
     setEnabled(false);
 }

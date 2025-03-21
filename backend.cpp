@@ -52,7 +52,7 @@ void Window::closefolder()
 
 void Window::about()
 {
-    QMessageBox::information(this, "关于", "图片抽取器 v1.0\n\n功能说明：支持随机抽取和顺序抽取两种模式\n\n作者：KusicFack");
+    QMessageBox::information(this, "关于", "图片抽取器 v1.0\n\n功能说明：支持随机抽取和顺序抽取两种模式抽取图片\n\n作者：github/@KusicFack");
 }
 
 void Window::initialize(int mode)
