@@ -3,6 +3,7 @@ project(Image_Picker)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 set(Qt6_DIR	"C:\\Development\\Qt\\6.8.2\\msvc2022_64\\lib\\cmake\\Qt6")
 set(Qt6_DLL_DIR "C:\\Development\\Qt\\6.8.2\\msvc2022_64\\bin")
@@ -25,6 +26,7 @@ qt_add_executable(Image_Picker main.cpp
     MyWindow.h
     ImageViewer.h
     ImageViewer.cpp
+    resource.qrc
     ${app_icon_resource_windows}
 )
 
