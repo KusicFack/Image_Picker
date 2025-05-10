@@ -21,6 +21,7 @@ public:
 class Window : public QMainWindow, public MainWindow
 {
 private:
+    QString dirName;
     QStringList pictures;
     QStringList copy_pictures;
     int MODE;
@@ -37,6 +38,7 @@ public:
         PauseButton->setVisible(false);
         TimeBox->setVisible(false);
         connect(actionpause, &QAction::toggled, this, &Window::set_pause);
+        connect(actionshow, &QAction::toggled, this, &Window::set_showname);
         connect(actionopen, &QAction::triggered, this, &Window::open_folder);
         connect(actionclear, &QAction::triggered, this, &Window::close_folder);
         connect(actionabout, &QAction::triggered, this, &Window::about);
@@ -48,6 +50,9 @@ public:
         connect(TimeBox, &QSpinBox::valueChanged, this, &Window::set_timer);
         connect(auto_timer, &QTimer::timeout, this, &Window::next);
         connect(PauseButton, &QPushButton::clicked, this, &Window::pause);
+        connect(KeepBox, &QCheckBox::stateChanged, this, &Window::keep_filename);
+        connect(FilenameButton, &QPushButton::pressed, this, &Window::show_filename);
+        connect(FilenameButton, &QPushButton::released, this, &Window::hide_filename);
     }
 private slots:
     void open_folder();
@@ -63,8 +68,12 @@ private slots:
     void pause();
     void auto_continue();
     void set_pause(bool);
+    void set_showname(bool);
+    void keep_filename(int);
+    void show_filename();
+    void hide_filename();
 private:
-    void show_picture(QStringList::iterator);
+    void show_picture(QString);
     void set_action(bool);
 };
 

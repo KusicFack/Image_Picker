@@ -27,10 +27,20 @@
     <enum>Qt::LayoutDirection::LeftToRight</enum>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
+    <property name="topMargin">
+     <number>0</number>
+    </property>
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="3" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1,1,1,2,4,6,1,1">
+      <item row="1" column="0">
+       <widget class="ImageViewer" name="graphicsView">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1,1,1,2,6,1,1">
         <item>
          <widget class="QPushButton" name="ControlButton">
           <property name="enabled">
@@ -113,13 +123,6 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="CountLabel">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
          <spacer name="horizontalSpacer">
           <property name="orientation">
            <enum>Qt::Orientation::Horizontal</enum>
@@ -173,11 +176,57 @@
        </layout>
       </item>
       <item row="0" column="0">
-       <widget class="ImageViewer" name="graphicsView">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,7,1,1">
+        <item>
+         <widget class="QLabel" name="CountLabel">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+          <property name="margin">
+           <number>0</number>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::TextInteractionFlag::NoTextInteraction</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="FilenameLabel">
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="FilenameButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>显示文件名</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="KeepBox">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>保持显示</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
@@ -214,6 +263,7 @@
      <string>选项</string>
     </property>
     <addaction name="actionpause"/>
+    <addaction name="actionshow"/>
    </widget>
    <addaction name="menufile"/>
    <addaction name="menuopt"/>
@@ -249,6 +299,17 @@
    </property>
    <property name="text">
     <string>允许自动播放时暂停</string>
+   </property>
+  </action>
+  <action name="actionshow">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>允许显示文件名</string>
    </property>
   </action>
  </widget>

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>667</width>
-    <height>282</height>
+    <height>305</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -50,7 +50,7 @@
      <item>
       <widget class="QLabel" name="Text">
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700;&quot;&gt;图片抽取器 v2.0&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;功能说明：&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;• 支持随机抽取和顺序抽取两种模式抽取图片&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;• 支持滚轮放大/缩小图片，调整图片大小&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;• 支持自定义间隔自动播放，可选播放中暂停&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;此项目基于 &lt;/span&gt;&lt;a href=&quot;https://www.qt.io/download-open-source&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#003e92;&quot;&gt;Qt for Open Source&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt; 以及其他 &lt;/span&gt;&lt;a href=&quot;https://blog.csdn.net/xiaohuihuihuige/article/details/128165275&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#003e92;&quot;&gt;互联网开源代码（版权归原作者所有）&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt; 开发&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;项目 GitHub 地址：&lt;/span&gt;&lt;a href=&quot;https://github.com/KusicFack/Image_Picker&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#003e92;&quot;&gt;KusicFack/Image_Picker&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700;&quot;&gt;图片抽取器 v2.1&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;功能说明：&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;• 支持随机抽取和顺序抽取两种模式抽取图片&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;• 支持常显文件名和点按显示文件名&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;• 支持滚轮放大/缩小图片，调整图片大小&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;• 支持自定义间隔自动播放，可选播放中暂停&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;此项目基于 &lt;/span&gt;&lt;a href=&quot;https://www.qt.io/download-open-source&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#003e92;&quot;&gt;Qt for Open Source&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt; 以及其他 &lt;/span&gt;&lt;a href=&quot;https://blog.csdn.net/xiaohuihuihuige/article/details/128165275&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#003e92;&quot;&gt;互联网开源代码（版权归原作者所有）&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt; 开发&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;项目 GitHub 地址：&lt;/span&gt;&lt;a href=&quot;https://github.com/KusicFack/Image_Picker&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#003e92;&quot;&gt;KusicFack/Image_Picker&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="textFormat">
         <enum>Qt::TextFormat::MarkdownText</enum>

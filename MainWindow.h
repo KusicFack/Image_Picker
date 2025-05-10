@@ -37,20 +37,25 @@ public:
     QAction *actionclear;
     QAction *actionabout;
     QAction *actionpause;
+    QAction *actionshow;
     QWidget *centralwidget;
     QGridLayout *gridLayout_2;
     QGridLayout *gridLayout;
+    ImageViewer *graphicsView;
     QHBoxLayout *horizontalLayout;
     QPushButton *ControlButton;
     QPushButton *PauseButton;
     QComboBox *ModeBox;
     QCheckBox *AutoBox;
     QSpinBox *TimeBox;
-    QLabel *CountLabel;
     QSpacerItem *horizontalSpacer;
     QPushButton *BackButton;
     QPushButton *NextButton;
-    ImageViewer *graphicsView;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *CountLabel;
+    QLabel *FilenameLabel;
+    QPushButton *FilenameButton;
+    QCheckBox *KeepBox;
     QStatusBar *statusbar;
     QMenuBar *menuBar;
     QMenu *menufile;
@@ -79,13 +84,24 @@ public:
         actionpause->setObjectName("actionpause");
         actionpause->setCheckable(true);
         actionpause->setChecked(true);
+        actionshow = new QAction(MainWindow);
+        actionshow->setObjectName("actionshow");
+        actionshow->setCheckable(true);
+        actionshow->setChecked(true);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         centralwidget->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         gridLayout_2 = new QGridLayout(centralwidget);
         gridLayout_2->setObjectName("gridLayout_2");
+        gridLayout_2->setContentsMargins(-1, 0, -1, -1);
         gridLayout = new QGridLayout();
         gridLayout->setObjectName("gridLayout");
+        graphicsView = new ImageViewer(centralwidget);
+        graphicsView->setObjectName("graphicsView");
+        graphicsView->setEnabled(true);
+
+        gridLayout->addWidget(graphicsView, 1, 0, 1, 1);
+
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
         ControlButton = new QPushButton(centralwidget);
@@ -124,11 +140,6 @@ public:
 
         horizontalLayout->addWidget(TimeBox);
 
-        CountLabel = new QLabel(centralwidget);
-        CountLabel->setObjectName("CountLabel");
-
-        horizontalLayout->addWidget(CountLabel);
-
         horizontalSpacer = new QSpacerItem(30, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer);
@@ -152,18 +163,47 @@ public:
         horizontalLayout->setStretch(2, 1);
         horizontalLayout->setStretch(3, 1);
         horizontalLayout->setStretch(4, 2);
-        horizontalLayout->setStretch(5, 4);
-        horizontalLayout->setStretch(6, 6);
+        horizontalLayout->setStretch(5, 6);
+        horizontalLayout->setStretch(6, 1);
         horizontalLayout->setStretch(7, 1);
-        horizontalLayout->setStretch(8, 1);
 
-        gridLayout->addLayout(horizontalLayout, 3, 0, 1, 1);
+        gridLayout->addLayout(horizontalLayout, 4, 0, 1, 1);
 
-        graphicsView = new ImageViewer(centralwidget);
-        graphicsView->setObjectName("graphicsView");
-        graphicsView->setEnabled(true);
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        CountLabel = new QLabel(centralwidget);
+        CountLabel->setObjectName("CountLabel");
+        CountLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        CountLabel->setMargin(0);
+        CountLabel->setTextInteractionFlags(Qt::TextInteractionFlag::NoTextInteraction);
 
-        gridLayout->addWidget(graphicsView, 0, 0, 1, 1);
+        horizontalLayout_2->addWidget(CountLabel);
+
+        FilenameLabel = new QLabel(centralwidget);
+        FilenameLabel->setObjectName("FilenameLabel");
+        FilenameLabel->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
+        FilenameLabel->setTextInteractionFlags(Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse);
+
+        horizontalLayout_2->addWidget(FilenameLabel);
+
+        FilenameButton = new QPushButton(centralwidget);
+        FilenameButton->setObjectName("FilenameButton");
+        FilenameButton->setEnabled(false);
+
+        horizontalLayout_2->addWidget(FilenameButton);
+
+        KeepBox = new QCheckBox(centralwidget);
+        KeepBox->setObjectName("KeepBox");
+        KeepBox->setEnabled(false);
+
+        horizontalLayout_2->addWidget(KeepBox);
+
+        horizontalLayout_2->setStretch(0, 3);
+        horizontalLayout_2->setStretch(1, 7);
+        horizontalLayout_2->setStretch(2, 1);
+        horizontalLayout_2->setStretch(3, 1);
+
+        gridLayout->addLayout(horizontalLayout_2, 0, 0, 1, 1);
 
 
         gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
@@ -191,6 +231,7 @@ public:
         menufile->addAction(actionclear);
         menuhelp->addAction(actionabout);
         menuopt->addAction(actionpause);
+        menuopt->addAction(actionshow);
 
         retranslateUi(MainWindow);
 
@@ -205,6 +246,7 @@ public:
         actionclear->setIconText(QCoreApplication::translate("MainWindow", "\345\205\263\351\227\255\346\226\207\344\273\266\345\244\271", nullptr));
         actionabout->setText(QCoreApplication::translate("MainWindow", "\345\205\263\344\272\216", nullptr));
         actionpause->setText(QCoreApplication::translate("MainWindow", "\345\205\201\350\256\270\350\207\252\345\212\250\346\222\255\346\224\276\346\227\266\346\232\202\345\201\234", nullptr));
+        actionshow->setText(QCoreApplication::translate("MainWindow", "\345\205\201\350\256\270\346\230\276\347\244\272\346\226\207\344\273\266\345\220\215", nullptr));
 #if QT_CONFIG(tooltip)
         ControlButton->setToolTip(QCoreApplication::translate("MainWindow", "\345\274\200\345\247\213\346\212\275\345\217\226", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -224,7 +266,6 @@ public:
         TimeBox->setToolTip(QCoreApplication::translate("MainWindow", "\351\224\256\345\205\245\346\222\255\346\224\276\351\227\264\351\232\224\357\274\2101-86400\357\274\211", nullptr));
 #endif // QT_CONFIG(tooltip)
         TimeBox->setSuffix(QCoreApplication::translate("MainWindow", "s", nullptr));
-        CountLabel->setText(QString());
 #if QT_CONFIG(tooltip)
         BackButton->setToolTip(QCoreApplication::translate("MainWindow", "\344\270\212\344\270\200\345\274\240\345\233\276\347\211\207(\342\206\220)", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -239,6 +280,10 @@ public:
 #if QT_CONFIG(shortcut)
         NextButton->setShortcut(QCoreApplication::translate("MainWindow", "Right", nullptr));
 #endif // QT_CONFIG(shortcut)
+        CountLabel->setText(QString());
+        FilenameLabel->setText(QString());
+        FilenameButton->setText(QCoreApplication::translate("MainWindow", "\346\230\276\347\244\272\346\226\207\344\273\266\345\220\215", nullptr));
+        KeepBox->setText(QCoreApplication::translate("MainWindow", "\344\277\235\346\214\201\346\230\276\347\244\272", nullptr));
         menufile->setTitle(QCoreApplication::translate("MainWindow", "\346\226\207\344\273\266", nullptr));
         menuhelp->setTitle(QCoreApplication::translate("MainWindow", "\345\270\256\345\212\251", nullptr));
         menuopt->setTitle(QCoreApplication::translate("MainWindow", "\351\200\211\351\241\271", nullptr));

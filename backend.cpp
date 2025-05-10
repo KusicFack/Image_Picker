@@ -7,7 +7,7 @@
 
 void Window::open_folder()
 {
-    QString dirName = QFileDialog::getExistingDirectory(this, "选择文件夹", "");
+    dirName = QFileDialog::getExistingDirectory(this, "选择文件夹", "");
     try
     {
         if (dirName.isEmpty())
@@ -23,16 +23,13 @@ void Window::open_folder()
         {
             throw QString("文件夹中无有效图片文件！");
         };
-        for (int i = 0; i < pictures.size(); ++i)
-        {
-            pictures[i]=dir.absoluteFilePath(pictures[i]);
-        }
         copy_pictures = pictures;
         statusbar->showMessage(QString("已选择文件夹：%1").arg(dirName) + QString("，共 %1 张图片").arg(pictures.size()), 0);
         ControlButton->setEnabled(true);
         actionclear->setEnabled(true);
         ModeBox->setEnabled(true);
         AutoBox->setEnabled(true);
+        KeepBox->setEnabled(true);
     }
     catch (const QString & e) {
         QMessageBox::critical(this, "错误", e);
@@ -53,6 +50,8 @@ void Window::close_folder()
     ModeBox->setEnabled(false);
     AutoBox->setEnabled(false);
     AutoBox->setChecked(false);
+    KeepBox->setChecked(false);
+    KeepBox->setEnabled(false);
 }
 
 void Window::about()
@@ -72,6 +71,7 @@ void Window::initialize()
     ControlButton->setText(QString("结束"));
     ModeBox->setEnabled(false);
     AutoBox->setEnabled(false);
+    if (!(KeepBox->isChecked())) FilenameButton->setEnabled(true);
     disconnect(ControlButton, &QPushButton::clicked, this, &Window::initialize);
     connect(ControlButton, &QPushButton::clicked, this, &Window::stop);
     switch (MODE)
@@ -90,8 +90,9 @@ void Window::initialize()
             }
     }
     it = pictures.begin();
-    show_picture(it);
+    show_picture(dirName+'/'+(*it));
     CountLabel->setText(QString("进度：%1/%2").arg(count=1).arg(pictures.size()));
+    if (KeepBox->isChecked()) FilenameLabel->setText(pictures[count-1]);
     if (AUTO)
     {
         TimeBox->setEnabled(false);
@@ -110,8 +111,9 @@ void Window::next()
         stop();
         return;
     }
-    show_picture(it);
+    show_picture(dirName+'/'+(*it));
     CountLabel->setText(QString("进度：%1/%2").arg(++count).arg(pictures.size()));
+    if (KeepBox->isChecked()) FilenameLabel->setText(pictures[count-1]);
     if ((it+1)==pictures.end()) 
     {
         NextButton->setEnabled(false);          
@@ -121,8 +123,9 @@ void Window::next()
 void Window::back()
 {
     if (!AUTO || (AUTO && !auto_timer->isActive())) NextButton->setEnabled(true);
-    show_picture(--it);
+    show_picture(dirName+'/'+(*(--it)));
     CountLabel->setText(QString("进度：%1/%2").arg(--count).arg(pictures.size()));
+    if (KeepBox->isChecked()) FilenameLabel->setText(pictures[count-1]);
     if (it==pictures.begin()) BackButton->setEnabled(false);
 }
 
@@ -136,6 +139,8 @@ void Window::stop()
     BackButton->setEnabled(false);
     ModeBox->setEnabled(true);
     AutoBox->setEnabled(true);
+    FilenameButton->setEnabled(false);
+    FilenameLabel->setText("");
     CountLabel->setText("");
     graphicsView->resetImage();
     if (AUTO)
@@ -179,6 +184,23 @@ void Window::auto_change(int state)
     }
 }
 
+void Window::keep_filename(int state)
+{
+    if (ControlButton->text()== "结束")
+    {
+        if (state == 2) 
+        {
+            FilenameButton->setEnabled(false);
+            FilenameLabel->setText(pictures[count-1]);
+        }
+        else 
+        {
+            FilenameButton->setEnabled(true);
+            FilenameLabel->setText("");
+        }
+    }
+}
+
 void Window::set_timer(int value)
 {
     auto_timer->setInterval(value*1000);
@@ -210,9 +232,26 @@ void Window::set_pause(bool checked)
     else ALLOW_PAUSE = 0;
 }
 
-void Window::show_picture(QStringList::iterator it)
+void Window::set_showname(bool checked)
 {
-    QPixmap mapImg(*it);
+    FilenameButton->setVisible(checked);
+    KeepBox->setVisible(checked);
+    FilenameLabel->setVisible(checked);
+}
+
+void Window::show_filename()
+{
+    FilenameLabel->setText(pictures[count-1]);
+}
+
+void Window::hide_filename()
+{
+    FilenameLabel->setText("");
+}
+
+void Window::show_picture(QString picture_name)
+{
+    QPixmap mapImg(picture_name);
     graphicsView->setPixmap(mapImg);
 }
 
@@ -220,5 +259,6 @@ void Window::set_action(bool enable)
 {
     actionclear->setEnabled(enable);
     actionpause->setEnabled(enable);
+    actionshow->setEnabled(enable);
     actionopen->setEnabled(enable);
 }

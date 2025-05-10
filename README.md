@@ -21,9 +21,7 @@
 - wbmp
 
 ## 软件界面
-Windows 浅色模式
-![image](https://github.com/user-attachments/assets/09297d77-cf52-4c37-af3f-3801c6fae564)
-
-Windows 深色模式
-![image](https://github.com/user-attachments/assets/0d47b5f6-a16e-4d69-91e8-9e1b4fc3aa5a)
+| Windows 浅色模式 | Windows 深色模式 |
+|-----------------|------------------|
+|![屏幕截图 2025-05-10 201502](https://github.com/user-attachments/assets/7de49fe3-eae5-4bfa-a10d-66e752b3aeb9)|![屏幕截图 2025-05-10 201347](https://github.com/user-attachments/assets/12d300b3-9095-4296-970f-970372e3d5f4)|
 
