@@ -171,9 +171,9 @@ void Window::mode_change()
     }
 }
 
-void Window::auto_change(int state)
+void Window::auto_change(Qt::CheckState state)
 {
-    if (state == 2) 
+    if (state == Qt::CheckState::Checked)
     {
         TimeBox->setVisible(true);
         AUTO = 1;
@@ -184,11 +184,11 @@ void Window::auto_change(int state)
     }
 }
 
-void Window::keep_filename(int state)
+void Window::keep_filename(Qt::CheckState state)
 {
     if (ControlButton->text()== "结束")
     {
-        if (state == 2) 
+        if (state == Qt::CheckState::Checked)
         {
             FilenameButton->setEnabled(false);
             FilenameLabel->setText(pictures[count-1]);

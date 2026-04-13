@@ -32,6 +32,7 @@ private:
     bool m_isPan;
     QPoint m_prevPan;
     QGraphicsScene *scene;
+    double m_fitScale;
 
 };
 

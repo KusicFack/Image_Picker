@@ -5,7 +5,8 @@ ImageViewer::ImageViewer(QWidget *parent)
     : QGraphicsView{parent},
     m_isPan(false),
     m_prevPan(0,0),
-    scene(nullptr)
+    scene(nullptr),
+    m_fitScale(1.0)
 {
     scene = new QGraphicsScene(this);
     this->setScene(scene);
@@ -40,6 +41,7 @@ void ImageViewer::initShow()
     this->resetTransform();
     this->setSceneRect(m_image.rect());
     this->fitInView(QRect(0, 0, m_image.width(), m_image.height()), Qt::KeepAspectRatio);
+    m_fitScale = transform().m11();
 }
 void ImageViewer::mousePressEvent(QMouseEvent *event)
 {
@@ -74,19 +76,43 @@ void ImageViewer::mouseReleaseEvent(QMouseEvent *event)
 
 void ImageViewer::zoom(QPoint factor)
 {
-    QRectF FOV = this->mapToScene(this->rect()).boundingRect();
-    QRectF FOVImage = QRectF(FOV.left(), FOV.top(), FOV.width(), FOV.height());
-    float scaleX = static_cast<float>(m_image.width()) / FOVImage.width();
-    float scaleY = static_cast<float>(m_image.height()) / FOVImage.height();
-    float minScale = scaleX > scaleY ? scaleY : scaleX;
-    float maxScale = scaleX > scaleY ? scaleX : scaleY;
-    if ((factor.y() > 0 && minScale > 100) || (factor.y() < 0 && maxScale < 1 )) {
-      return;
+    constexpr double zoomInStep = 1.2;
+    constexpr double zoomOutStep = 0.8;
+    constexpr double maxZoomFactor = 100.0;
+    constexpr double epsilon = 1e-6;
+
+    const double currentScale = transform().m11();
+    const double minAllowedScale = m_fitScale;
+    const double maxAllowedScale = m_fitScale * maxZoomFactor;
+
+    if (factor.y() > 0) {
+        if (currentScale >= maxAllowedScale - epsilon) {
+            return;
+        }
+
+        const double targetScale = currentScale * zoomInStep;
+        if (targetScale > maxAllowedScale) {
+            const double correction = maxAllowedScale / currentScale;
+            scale(correction, correction);
+        } else {
+            scale(zoomInStep, zoomInStep);
+        }
+        return;
     }
-    if(factor.y()>0)
-        scale(1.2, 1.2);
-    else
-        scale(0.8, 0.8);
+
+    if (factor.y() < 0) {
+        if (currentScale <= minAllowedScale + epsilon) {
+            return;
+        }
+
+        const double targetScale = currentScale * zoomOutStep;
+        if (targetScale < minAllowedScale) {
+            const double correction = minAllowedScale / currentScale;
+            scale(correction, correction);
+        } else {
+            scale(zoomOutStep, zoomOutStep);
+        }
+    }
 }
 void ImageViewer::keyPressEvent(QKeyEvent *event)
 {
@@ -94,6 +120,7 @@ void ImageViewer::keyPressEvent(QKeyEvent *event)
         this->resetTransform();
         this->setSceneRect(m_image.rect());
         this->fitInView(QRect(0, 0, m_image.width(), m_image.height()), Qt::KeepAspectRatio);
+        m_fitScale = transform().m11();
     }
 }
 
@@ -109,13 +136,26 @@ void ImageViewer::pan(const QPoint &panTo)
 
 void ImageViewer::wheelEvent(QWheelEvent *event)
 {
-    if(m_image.isNull())
+    if(m_image.isNull()) {
+        event->ignore();
         return;
-    QPoint numDegrees = event->angleDelta() / 8;
-    if (!numDegrees.isNull()) {
-        QPoint numSteps = numDegrees / 15;
-        zoom(numSteps);
     }
+
+    int deltaY = event->angleDelta().y();
+    if (deltaY == 0) {
+        deltaY = event->pixelDelta().y();
+    }
+    if (deltaY == 0) {
+        event->ignore();
+        return;
+    }
+
+    int direction = (deltaY > 0) ? 1 : -1;
+    if (event->inverted()) {
+        direction = -direction;
+    }
+
+    zoom(QPoint(0, direction));
     event->accept();
 }
 

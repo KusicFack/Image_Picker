@@ -46,11 +46,11 @@ public:
         connect(NextButton, &QPushButton::clicked, this, &Window::next);
         connect(BackButton, &QPushButton::clicked, this, &Window::back);
         connect(ModeBox, &QComboBox::currentIndexChanged, this, &Window::mode_change);
-        connect(AutoBox, &QCheckBox::stateChanged, this, &Window::auto_change);
+        connect(AutoBox, &QCheckBox::checkStateChanged, this, &Window::auto_change);
         connect(TimeBox, &QSpinBox::valueChanged, this, &Window::set_timer);
         connect(auto_timer, &QTimer::timeout, this, &Window::next);
         connect(PauseButton, &QPushButton::clicked, this, &Window::pause);
-        connect(KeepBox, &QCheckBox::stateChanged, this, &Window::keep_filename);
+        connect(KeepBox, &QCheckBox::checkStateChanged, this, &Window::keep_filename);
         connect(FilenameButton, &QPushButton::pressed, this, &Window::show_filename);
         connect(FilenameButton, &QPushButton::released, this, &Window::hide_filename);
     }
@@ -63,13 +63,13 @@ private slots:
     void next();
     void back();
     void mode_change();
-    void auto_change(int);
+    void auto_change(Qt::CheckState);
     void set_timer(int);
     void pause();
     void auto_continue();
     void set_pause(bool);
     void set_showname(bool);
-    void keep_filename(int);
+    void keep_filename(Qt::CheckState);
     void show_filename();
     void hide_filename();
 private:
